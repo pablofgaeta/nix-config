@@ -1,0 +1,3 @@
+set -euo pipefail
+
+env -u ZELLIJ -u ZELLIJ_SESSION_NAME -u ZELLIJ_PANE_ID zellij attach -c "${1:-default}"

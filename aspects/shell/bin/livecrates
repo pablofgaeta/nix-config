@@ -1,0 +1,3 @@
+set -euo pipefail
+
+cargo watch -s 'cargo doc && browser-sync start --ss target/doc -s target/doc --directory --no-open'

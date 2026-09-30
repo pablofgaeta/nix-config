@@ -1,0 +1,5 @@
+pre-commit:
+  fail_on_changes: "always"
+  jobs:
+    - name: Format staged files
+      run: TERM=dumb treefmt {staged_files}

@@ -1,0 +1,16 @@
+.DS_Store
+.direnv/
+env/
+.env
+.envrc
+*.bak
+.icons/
+.worktrees/
+.workspaces/
+__pycache__/
+*.py[cod]
+*$py.class
+result
+target/
+pi-session-*.html
+.playwright-mcp/

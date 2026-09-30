@@ -1,0 +1,7 @@
+set -euo pipefail
+
+if (($# == 2)) && [[ -d $1 ]]; then
+    cp -r -- "${1%/}" "$2"
+else
+    cp -- "$@"
+fi
