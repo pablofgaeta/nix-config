@@ -21,7 +21,11 @@
           permission =
             basePermissionConfig.permission
             // {
-              skill = {"*" = "ask";} // lib.genAttrs (builtins.attrNames config.pablo.ai.skills.sources) (_: "allow");
+              skill =
+                {"*" = "ask";}
+                // lib.genAttrs
+                (builtins.attrNames config.pablo.ai.skills.sources ++ builtins.attrNames cfg.skills)
+                (_: "allow");
             };
         };
     in {
@@ -42,6 +46,14 @@
           ];
           description = "Pi extension package specs.";
         };
+        skills = lib.mkOption {
+          type = lib.types.attrsOf lib.types.str;
+          default = {};
+          description = ''
+            Pi-only skills: SKILL.md `name` to absolute directory path. Paths are
+            read in place via settings.json `skills`, not copied to the store.
+          '';
+        };
       };
 
       config = {
@@ -57,7 +69,10 @@
             ".pi/agent/extensions/pi-permission-system/config.json".source = jsonFormat.generate "pi-permission-system.json" permissionConfig;
             ".pi/agent/extensions/remember-model.ts".source = ./pi-remember-model.ts;
             ".pi/agent/settings.json" = {
-              source = jsonFormat.generate "pi-settings.json" {inherit (cfg) packages;};
+              source = jsonFormat.generate "pi-settings.json" (
+                {inherit (cfg) packages;}
+                // lib.optionalAttrs (cfg.skills != {}) {skills = lib.attrValues cfg.skills;}
+              );
               force = true;
             };
           }
