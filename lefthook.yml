@@ -3,3 +3,5 @@ pre-commit:
   jobs:
     - name: Format staged files
       run: TERM=dumb treefmt {staged_files}
+    - name: Scan staged files for secrets
+      run: for f in {staged_files}; do gitleaks dir --redact --no-banner "$f" || exit 1; done

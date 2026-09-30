@@ -60,6 +60,7 @@ in {
             treefmt.config.build.wrapper
             alejandra
             fish
+            gitleaks
             lefthook
             prettier
             ruff
