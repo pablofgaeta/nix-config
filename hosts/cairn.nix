@@ -60,6 +60,11 @@
 
       programs.fish.enable = true;
 
+      environment.systemPackages = with pkgs; [
+        git
+        gnumake
+      ];
+
       services.openssh = {
         enable = true;
         settings = {
