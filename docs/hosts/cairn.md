@@ -29,4 +29,7 @@ After rebooting, update the installed system with:
 
 ```bash
 NIX_HOST=cairn make nixos
+
+# or remotely deploy (from another host)
+make deploy-cairn
 ```
