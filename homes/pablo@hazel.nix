@@ -76,6 +76,13 @@ in {
         libtool
       ];
 
+      programs.ssh.settings.moss = {
+        HostName = "moss";
+        User = "pablo";
+        IdentityFile = "~/.ssh/hazel-host-admin";
+        IdentitiesOnly = "yes";
+      };
+
       programs.git.settings = {
         user.signingkey = "~/.ssh/gh.pub";
         core.sshCommand = "ssh -i ~/.ssh/gh";

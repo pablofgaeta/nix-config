@@ -41,6 +41,7 @@
       };
 
       boot = {
+        binfmt.emulatedSystems = ["aarch64-linux"];
         initrd = {
           systemd.enable = true;
           luks.devices.cryptroot.crypttabExtraOpts = [

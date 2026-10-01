@@ -1,5 +1,6 @@
 NIX_HOST ?= lark
 NIX_USER ?= pablogaeta
+MOSS_SSH ?= pablo@moss
 
 # Build Home Manager
 
@@ -17,7 +18,12 @@ darwin:
 
 .PHONY: nixos
 nixos:
+	@if [ "$(NIX_HOST)" = moss ]; then echo "Use make deploy-moss from Hazel" >&2; exit 1; fi
 	sudo nixos-rebuild switch --flake path:.#$(NIX_HOST)
+
+.PHONY: deploy-moss
+deploy-moss:
+	nix run path:.#nixos-rebuild -- switch --flake path:.#moss --target-host "$(MOSS_SSH)" --elevate=sudo
 
 # Lint
 .PHONY: lint

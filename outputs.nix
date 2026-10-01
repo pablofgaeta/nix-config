@@ -31,6 +31,10 @@ in {
         };
       };
       x86_64-linux = {
+        nixos-rebuild = {
+          type = "app";
+          program = lib.getExe inputs.nixpkgs.legacyPackages.x86_64-linux.nixos-rebuild;
+        };
         home-manager = homeManagerApp "x86_64-linux";
         formatter = {
           type = "app";
@@ -40,6 +44,7 @@ in {
     };
 
     checks = {
+      aarch64-linux.moss-system = inputs.self.nixosConfigurations.moss.config.system.build.toplevel;
       aarch64-darwin = {
         lark-system = inputs.self.darwinConfigurations.lark.system;
         pablogaeta-at-lark-home = inputs.self.homeConfigurations."pablogaeta@lark".activationPackage;

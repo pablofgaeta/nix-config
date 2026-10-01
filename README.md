@@ -4,10 +4,11 @@ Personal macOS and NixOS configuration managed with [Nix](https://nix.dev/). The
 
 ## Targets
 
-| Target | Platform         | System                      | User environment                              |
-| ------ | ---------------- | --------------------------- | --------------------------------------------- |
-| Lark   | `aarch64-darwin` | `NIX_HOST=lark make darwin` | `NIX_HOST=lark NIX_USER=pablogaeta make home` |
-| Hazel  | `x86_64-linux`   | `NIX_HOST=hazel make nixos` | `NIX_HOST=hazel NIX_USER=pablo make home`     |
+| Target | Platform         | System                          | User environment                              |
+| ------ | ---------------- | ------------------------------- | --------------------------------------------- |
+| Lark   | `aarch64-darwin` | `NIX_HOST=lark make darwin`     | `NIX_HOST=lark NIX_USER=pablogaeta make home` |
+| Hazel  | `x86_64-linux`   | `NIX_HOST=hazel make nixos`     | `NIX_HOST=hazel NIX_USER=pablo make home`     |
+| Moss   | `aarch64-linux`  | `make deploy-moss` (from Hazel) | None                                          |
 
 `NIX_HOST` and `NIX_USER` select a target; Home Manager targets use `NIX_USER@NIX_HOST`.
 
@@ -22,5 +23,5 @@ Personal macOS and NixOS configuration managed with [Nix](https://nix.dev/). The
 
 - [Development setup](docs/setup.md)
 - [Extending the flake](docs/extensions.md)
-- Host notes: [Lark](docs/hosts/lark.md) and [Hazel](docs/hosts/hazel.md)
+- Host notes: [Lark](docs/hosts/lark.md), [Hazel](docs/hosts/hazel.md), and [Moss](docs/hosts/moss.md)
 - [macOS device notes](docs/macos.md)

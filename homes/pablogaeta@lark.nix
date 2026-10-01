@@ -101,8 +101,10 @@ in {
       ];
 
       programs.ssh.settings.moss = {
-        HostName = "home-assistant";
+        HostName = "moss";
         User = "pablo";
+        IdentityFile = "~/.ssh/lark-host-admin";
+        IdentitiesOnly = "yes";
 
         # Home Assistant
         "LocalForward 8123" = "localhost:8123";
