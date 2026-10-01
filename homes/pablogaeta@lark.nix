@@ -111,6 +111,8 @@ in {
       programs.ssh.settings.hazel = {
         HostName = "hazel";
         User = "pablo";
+        IdentityFile = "~/.ssh/lark-host-admin";
+        IdentitiesOnly = "yes";
         ForwardAgent = "yes";
         ControlPersist = "yes";
 

@@ -36,7 +36,7 @@
         ];
         shell = pkgs.bashInteractive;
         openssh.authorizedKeys.keys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOhIDSvStvZHDq665hZusi69KYs/SkO0yehByf0m3D/U pablo@hazel"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOhIDSvStvZHDq665hZusi69KYs/SkO0yehByf0m3D/U pablo@lark-host-admin"
         ];
       };
 
