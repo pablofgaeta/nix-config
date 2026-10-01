@@ -1,6 +1,7 @@
 NIX_HOST ?= lark
 NIX_USER ?= pablogaeta
 MOSS_SSH ?= pablo@moss
+CAIRN_SSH ?= pablo@cairn
 
 # Build Home Manager
 
@@ -24,6 +25,10 @@ nixos:
 .PHONY: deploy-moss
 deploy-moss:
 	nix run path:.#nixos-rebuild -- switch --flake path:.#moss --target-host "$(MOSS_SSH)" --elevate=sudo
+
+.PHONY: deploy-cairn
+deploy-cairn:
+	nix run path:.#nixos-rebuild -- switch --flake path:.#cairn --target-host "$(CAIRN_SSH)" --build-host "$(CAIRN_SSH)" --elevate=sudo --ask-elevate-password
 
 # Lint
 .PHONY: lint

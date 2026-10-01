@@ -16,15 +16,23 @@
     }: {
       imports = [
         inputs.disko.nixosModules.disko
+        inputs.lanzaboote.nixosModules.lanzaboote
         (inputs.nixpkgs + "/nixos/modules/installer/scan/not-detected.nix")
         ./_cairn/disko.nix
         ./_cairn/hardware-configuration.nix
       ];
 
       boot = {
-        initrd.systemd.enable = true;
+        initrd = {
+          systemd.enable = true;
+          luks.devices.cryptroot.crypttabExtraOpts = ["tpm2-device=auto"];
+        };
+        lanzaboote = {
+          enable = true;
+          pkiBundle = "/var/lib/sbctl";
+        };
         loader = {
-          systemd-boot.enable = true;
+          systemd-boot.enable = lib.mkForce false;
           efi.canTouchEfiVariables = true;
         };
       };
@@ -63,7 +71,14 @@
       environment.systemPackages = with pkgs; [
         git
         gnumake
+        sbctl
       ];
+
+      security.tpm2 = {
+        enable = true;
+        pkcs11.enable = true;
+        tctiEnvironment.enable = true;
+      };
 
       services.openssh = {
         enable = true;

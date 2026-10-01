@@ -13,6 +13,11 @@
     program = lib.getExe inputs.home-manager.packages.${system}.home-manager;
   };
 
+  nixosRebuildApp = system: {
+    type = "app";
+    program = lib.getExe inputs.nixpkgs.legacyPackages.${system}.nixos-rebuild;
+  };
+
   treefmtEval =
     lib.genAttrs systems (system:
       inputs.treefmt-nix.lib.evalModule inputs.nixpkgs.legacyPackages.${system} ./treefmt.nix);
@@ -29,12 +34,10 @@ in {
           type = "app";
           program = lib.getExe inputs.darwin.packages.aarch64-darwin.darwin-rebuild;
         };
+        nixos-rebuild = nixosRebuildApp "aarch64-darwin";
       };
       x86_64-linux = {
-        nixos-rebuild = {
-          type = "app";
-          program = lib.getExe inputs.nixpkgs.legacyPackages.x86_64-linux.nixos-rebuild;
-        };
+        nixos-rebuild = nixosRebuildApp "x86_64-linux";
         home-manager = homeManagerApp "x86_64-linux";
         formatter = {
           type = "app";
