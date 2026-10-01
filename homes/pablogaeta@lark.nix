@@ -143,6 +143,13 @@ in {
         "LocalForward 8521" = "localhost:8521";
       };
 
+      programs.ssh.settings.cairn = {
+        HostName = "cairn";
+        User = "pablo";
+        IdentityFile = "~/.ssh/lark-host-admin";
+        IdentitiesOnly = "yes";
+      };
+
       programs.git.settings = {
         user.signingkey = "~/.ssh/personal.pub";
         core.sshCommand = "ssh -i ~/.ssh/personal";
