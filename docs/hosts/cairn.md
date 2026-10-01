@@ -21,6 +21,7 @@ sudo nix --extra-experimental-features "nix-command flakes" run github:nix-commu
 Set the `pablo` password before rebooting if console login is needed:
 
 ```bash
+sudo nix --extra-experimental-features "nix-command flakes" run github:nix-community/disko/ff8702b4de27f72b4c78573dfb89ec74e36abdf1 -- --mode mount --root-mountpoint /mnt --flake .#cairn
 sudo nixos-enter --root /mnt -c 'passwd pablo'
 ```
 
