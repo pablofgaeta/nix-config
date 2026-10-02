@@ -66,7 +66,11 @@
 
         home.file =
           {
-            ".pi/agent/extensions/pi-permission-system/config.json".source = jsonFormat.generate "pi-permission-system.json" permissionConfig;
+            # pi-permission-system replaces this symlink when its settings change.
+            ".pi/agent/extensions/pi-permission-system/config.json" = {
+              source = jsonFormat.generate "pi-permission-system.json" permissionConfig;
+              force = true;
+            };
             ".pi/agent/extensions/remember-model.ts".source = ./pi-remember-model.ts;
             ".pi/agent/settings.json" = {
               source = jsonFormat.generate "pi-settings.json" (
